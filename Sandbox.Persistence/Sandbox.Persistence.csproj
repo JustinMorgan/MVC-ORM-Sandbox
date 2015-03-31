@@ -57,8 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INHUnitOfWork.cs" />
-    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="NHUnitOfWork.cs" />
     <Compile Include="PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

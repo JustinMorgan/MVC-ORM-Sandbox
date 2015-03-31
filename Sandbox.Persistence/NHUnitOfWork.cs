@@ -1,30 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using NHibernate;
+using Sandbox.Domain;
 
 namespace Sandbox.Persistence
 {
-    public class NHUnitOfWork : INHUnitOfWork
+    public class NHUnitOfWork : IUnitOfWork
     {
-        public static NHUnitOfWork Current
-        {
-            get { return _current; }
-            set { _current = value; }
-        }
-        [ThreadStatic]
-        private static NHUnitOfWork _current;
-
-        public ISession Session { get; private set; }
-
         private readonly ISessionFactory _sessionFactory;
-
-        /// <summary>
-        /// Current transaction
-        /// </summary>
-        private ITransaction _transaction;
 
         public NHUnitOfWork(ISessionFactory sessionFactory)
         {
@@ -33,37 +16,46 @@ namespace Sandbox.Persistence
 
         public void BeginTransaction()
         {
-            Session = _sessionFactory.OpenSession();
-            _transaction = Session.BeginTransaction();
+            BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
-        public void Commit()
+        public void BeginTransaction(IsolationLevel isolationLevel)
         {
-            try
-            {
-                _transaction.Commit();
-            }
-            finally
-            {
-                Session.Close();
-            }
+            var session = _sessionFactory.OpenSession();
+            session.BeginTransaction(isolationLevel);
         }
 
         public void Rollback()
         {
-            try
+            var session = _sessionFactory.GetCurrentSession();
+            var transaction = session.Transaction;
+
+            if (transaction.IsActive)
             {
-                _transaction.Rollback();
+                transaction.Rollback();
             }
-            finally
+            else 
+                throw new NotImplementedException();
+        }
+
+        public void Commit()
+        {
+            var session = _sessionFactory.GetCurrentSession();
+            var transaction = session.Transaction;
+
+            if (transaction.IsActive)
             {
-                Session.Close();
+                transaction.Commit();
             }
+            else
+                throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            Session.Flush();
+            var session = _sessionFactory.GetCurrentSession();
+            var transaction = session.Transaction;
+            transaction.Dispose();
         }
     }
 }

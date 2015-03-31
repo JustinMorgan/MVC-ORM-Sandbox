@@ -16,8 +16,8 @@ namespace Sandbox.Web2
     {
         protected void Application_Start()
         {
+            AutofacConfig.RegisterAutoFac(GlobalConfiguration.Configuration);
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

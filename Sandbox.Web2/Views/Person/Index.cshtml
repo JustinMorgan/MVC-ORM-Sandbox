@@ -1,5 +1,23 @@
-﻿@{
+﻿@using Sandbox.Web2
+@model IEnumerable<PersonModel>
+@{
     ViewBag.Title = "People";
 }
 
 <h2>People</h2>
+
+<section class="entity-list">
+    <ul>
+        <li>Id</li>
+        <li>Name</li>
+        <li>Birthdate</li>
+    </ul>
+    @foreach(var p in Model)
+    {
+        <ul>
+            <li>@p.Id</li>
+            <li>@p.Name</li>
+            <li>@p.BirthDate.ToShortDateString()</li>
+        </ul>
+    }
+</section>

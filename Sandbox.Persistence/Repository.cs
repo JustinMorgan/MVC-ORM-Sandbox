@@ -45,7 +45,7 @@ namespace Sandbox.Persistence
             get { return _session.Query<TEntity>().Provider; }
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(long id)
         {
             return _session.Get<TEntity>(id);
         }

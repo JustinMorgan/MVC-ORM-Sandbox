@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="ContactInfo.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="FakePersonRepository.cs" />
     <Compile Include="IPersonRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PhoneInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
