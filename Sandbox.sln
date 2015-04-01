@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Domain", "Sandbox.Domain\Sandbox.Domain.csproj", "{737552C5-29DB-4CE9-A3D0-8B73D19BE5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Persistence", "Sandbox.Persistence\Sandbox.Persistence.csproj", "{0F7D00A8-30B6-483B-B988-904BFAA08283}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Persistence.NHibernate", "Sandbox.Persistence\Sandbox.Persistence.NHibernate.csproj", "{0F7D00A8-30B6-483B-B988-904BFAA08283}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Web", "Sandbox.Web\Sandbox.Web.csproj", "{E107BBBD-CAB3-4B09-9A48-8437775786A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Test", "Sandbox.Test\Sandbox.Test.csproj", "{C71AF52D-5E52-48BF-9099-38DBA37B84B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Web2", "Sandbox.Web2\Sandbox.Web2.csproj", "{1BFAE2FD-DD64-4BA4-B2AD-5F70A8812765}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{B9B68506-EC90-4D5B-9E8D-2981359EF8CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{02E71480-6DC5-4247-BAF2-0C77FD4FE3DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F5418BB6-767C-4B0A-9E95-82DB9268E8F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{2C67F53F-80EB-4DEF-B80E-0238EEC5939B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,5 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F7D00A8-30B6-483B-B988-904BFAA08283} = {B9B68506-EC90-4D5B-9E8D-2981359EF8CE}
+		{737552C5-29DB-4CE9-A3D0-8B73D19BE5AB} = {02E71480-6DC5-4247-BAF2-0C77FD4FE3DF}
+		{C71AF52D-5E52-48BF-9099-38DBA37B84B7} = {F5418BB6-767C-4B0A-9E95-82DB9268E8F7}
+		{E107BBBD-CAB3-4B09-9A48-8437775786A8} = {2C67F53F-80EB-4DEF-B80E-0238EEC5939B}
+		{1BFAE2FD-DD64-4BA4-B2AD-5F70A8812765} = {2C67F53F-80EB-4DEF-B80E-0238EEC5939B}
 	EndGlobalSection
 EndGlobal

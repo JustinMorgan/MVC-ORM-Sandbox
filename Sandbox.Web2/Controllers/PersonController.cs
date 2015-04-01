@@ -17,6 +17,7 @@ namespace Sandbox.Web2.Controllers
             _personRepository = personRepository;
         }
 
+        [UnitOfWork]
         public ActionResult Index()
         {
             var models = _personRepository.Select(

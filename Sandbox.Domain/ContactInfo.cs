@@ -4,14 +4,15 @@ namespace Sandbox.Domain
 {
     public class ContactInfo : Entity
     {
-        public string StreetAddress { get; set; }
-        public State State { get; set; }
-        public string Zip { get; set; }
-        public PhoneInfo Phone { get; set; }
+        public virtual string StreetAddress { get; set; }
+        public virtual State State { get; set; }
+        public virtual string Zip { get; set; }
+        public virtual PhoneInfo Phone { get; set; }
 
+        /*[IgnoreMapping]
         public Country Country
         {
             get { return State.Country; }
-        }
+        }*/
     }
 }

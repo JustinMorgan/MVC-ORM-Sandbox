@@ -7,7 +7,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using NHibernate;
 using Sandbox.Domain;
+using Sandbox.Persistence.NHibernate;
+using NHConfiguration = NHibernate.Cfg.Configuration;
 
 namespace Sandbox.Web2
 {
@@ -18,7 +21,7 @@ namespace Sandbox.Web2
             var builder = new ContainerBuilder();
             var assembly = Assembly.GetExecutingAssembly();
 
-            RegisterTypes(builder);
+            RegisterPersistence(builder);
             RegisterMvc(builder, assembly);
 
             var container = builder.Build();
@@ -29,10 +32,13 @@ namespace Sandbox.Web2
             config.DependencyResolver = new AutoFacContainer(new AutofacDependencyResolver(container));
         }
 
-        private static void RegisterTypes(ContainerBuilder builder)
+        private static void RegisterPersistence(ContainerBuilder builder)
         {
-            //builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerRequest();
-            builder.RegisterType<FakePersonRepository>().As<IPersonRepository>();
+            builder.RegisterInstance(NHBootstrapper.Configure()).SingleInstance();
+            builder.Register(x => x.Resolve<NHConfiguration>().BuildSessionFactory()).SingleInstance();
+            builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerDependency();
+            builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
+            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>();
         }
 
         private static void RegisterMvc(ContainerBuilder builder, Assembly assembly)

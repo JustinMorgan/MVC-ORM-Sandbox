@@ -76,9 +76,9 @@
       <Project>{737552c5-29db-4ce9-a3d0-8b73d19be5ab}</Project>
       <Name>Sandbox.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sandbox.Persistence\Sandbox.Persistence.csproj">
+    <ProjectReference Include="..\Sandbox.Persistence\Sandbox.Persistence.NHibernate.csproj">
       <Project>{0f7d00a8-30b6-483b-b988-904bfaa08283}</Project>
-      <Name>Sandbox.Persistence</Name>
+      <Name>Sandbox.Persistence.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sandbox.Web\Sandbox.Web.csproj">
       <Project>{e107bbbd-cab3-4b09-9a48-8437775786a8}</Project>

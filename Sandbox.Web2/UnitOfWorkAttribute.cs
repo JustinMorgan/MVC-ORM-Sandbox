@@ -1,0 +1,49 @@
+﻿using System;
+using System.Web.Mvc;
+using Sandbox.Domain;
+
+namespace Sandbox.Web2
+{
+    [AttributeUsage(AttributeTargets.Method)]
+    public class UnitOfWorkAttribute : ActionFilterAttribute
+    {
+        //todo: add scope parameter
+        private IUnitOfWork _unitOfWork;
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //todo: handle units of work for child actions
+            _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
+            _unitOfWork.BeginTransaction();
+        }
+
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+                if (filterContext.Exception != null && filterContext.ExceptionHandled)
+                {
+                    _unitOfWork.Rollback();
+                }
+        }
+
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            base.OnResultExecuted(filterContext);
+
+            try
+            {
+                if (filterContext.Exception != null && !filterContext.ExceptionHandled)
+                {
+                    _unitOfWork.Rollback();
+                }
+                else
+                {
+                    _unitOfWork.Commit();
+                }
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+    }
+}

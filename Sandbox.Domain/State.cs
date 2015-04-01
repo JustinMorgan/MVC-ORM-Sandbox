@@ -4,8 +4,8 @@ namespace Sandbox.Domain
 {
     public class State : Entity
     {
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public Country Country { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Code { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

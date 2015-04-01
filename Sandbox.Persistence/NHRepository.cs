@@ -8,14 +8,14 @@ using NHibernate;
 using NHibernate.Linq;
 using Sandbox.Domain;
 
-namespace Sandbox.Persistence
+namespace Sandbox.Persistence.NHibernate
 {
-    public class Repository<TEntity> : IRepository<TEntity>
+    public class NHRepository<TEntity> : IRepository<TEntity>
         where TEntity : Entity
     {
         private readonly ISession _session;
 
-        public Repository(ISession session)
+        public NHRepository(ISession session)
         {
             _session = session;
         }

@@ -3,15 +3,15 @@ using System.Data;
 using NHibernate;
 using Sandbox.Domain;
 
-namespace Sandbox.Persistence
+namespace Sandbox.Persistence.NHibernate
 {
     public class NHUnitOfWork : IUnitOfWork
     {
-        private readonly ISessionFactory _sessionFactory;
+        private readonly ISession _session;
 
-        public NHUnitOfWork(ISessionFactory sessionFactory)
+        public NHUnitOfWork(ISession session)
         {
-            _sessionFactory = sessionFactory;
+            _session = session;
         }
 
         public void BeginTransaction()
@@ -21,41 +21,43 @@ namespace Sandbox.Persistence
 
         public void BeginTransaction(IsolationLevel isolationLevel)
         {
-            var session = _sessionFactory.OpenSession();
-            session.BeginTransaction(isolationLevel);
-        }
-
-        public void Rollback()
-        {
-            var session = _sessionFactory.GetCurrentSession();
-            var transaction = session.Transaction;
-
-            if (transaction.IsActive)
-            {
-                transaction.Rollback();
-            }
-            else 
-                throw new NotImplementedException();
+            _session.BeginTransaction(isolationLevel);
         }
 
         public void Commit()
         {
-            var session = _sessionFactory.GetCurrentSession();
-            var transaction = session.Transaction;
+            var transaction = _session.Transaction;
 
-            if (transaction.IsActive)
+            try
             {
                 transaction.Commit();
             }
-            else
-                throw new NotImplementedException();
+            finally
+            {
+                _session.Close();
+            }
+        }
+
+        public void Rollback()
+        {
+            var transaction = _session.Transaction;
+
+            try
+            {
+                transaction.Rollback();
+            }
+            finally
+            {
+                _session.Close();
+            }
         }
 
         public void Dispose()
         {
-            var session = _sessionFactory.GetCurrentSession();
-            var transaction = session.Transaction;
-            transaction.Dispose();
+            if (_session.IsOpen)
+            {
+                Rollback();
+            }
         }
     }
 }

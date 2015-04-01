@@ -4,8 +4,8 @@ namespace Sandbox.Domain
 {
     public class PhoneInfo : Entity
     {
-        public string PhoneNumber { get; set; }
-        public PhoneType Type { get; set; }
+        public virtual string PhoneNumber { get; set; }
+        public virtual PhoneType Type { get; set; }
 
         public enum PhoneType
         {
