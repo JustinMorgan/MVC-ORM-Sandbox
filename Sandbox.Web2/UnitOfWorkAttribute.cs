@@ -19,10 +19,10 @@ namespace Sandbox.Web2
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-                if (filterContext.Exception != null && filterContext.ExceptionHandled)
-                {
-                    _unitOfWork.Rollback();
-                }
+            if (filterContext.Exception != null && filterContext.ExceptionHandled)
+            {
+                _unitOfWork.Rollback();
+            }
         }
 
         public override void OnResultExecuted(ResultExecutedContext filterContext)

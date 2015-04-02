@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</ProjectGuid>
+    <ProjectGuid>{595F0E15-D621-4FD1-BD1C-2BECE7AE6F3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sandbox.Persistence.Common</RootNamespace>
-    <AssemblyName>Sandbox.Persistence.Common</AssemblyName>
+    <RootNamespace>Sandbox.Test.Mocking</RootNamespace>
+    <AssemblyName>Sandbox.Test.Mocking</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,15 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPersonRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="FakePerson.cs" />
+    <Compile Include="FakePersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sandbox.Domain\Sandbox.Domain.csproj">
-      <Project>{737552c5-29db-4ce9-a3d0-8b73d19be5ab}</Project>
+      <Project>{737552C5-29DB-4CE9-A3D0-8B73D19BE5AB}</Project>
       <Name>Sandbox.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Persistence.Common\Sandbox.Persistence.Common.csproj">
+      <Project>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</Project>
+      <Name>Sandbox.Persistence.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

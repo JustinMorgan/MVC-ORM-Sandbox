@@ -6,6 +6,7 @@ namespace Sandbox.Persistence.NHibernate
 {
     public class NHUnitOfWork : IUnitOfWork
     {
+        //todo: check that injected sessions get cleaned up and disposed properly
         private readonly ISession _session;
 
         public NHUnitOfWork(ISession session)
