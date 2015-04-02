@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using FluentNHibernate.Data;
 using NHibernate;
 using NHibernate.Linq;
-using Sandbox.Domain;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {

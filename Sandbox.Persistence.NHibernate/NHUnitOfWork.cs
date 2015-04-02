@@ -1,7 +1,6 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using NHibernate;
-using Sandbox.Domain;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {

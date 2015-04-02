@@ -10,6 +10,7 @@ using NHibernate.Bytecode;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using Sandbox.Domain;
+using Sandbox.Domain.Models;
 using NHConfiguration = NHibernate.Cfg.Configuration;
 
 namespace Sandbox.Web

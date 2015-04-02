@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Data;
-using NHibernate;
 using NHibernate.Bytecode;
 using NHibernate.Cfg;
 using NHibernate.Context;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 using Sandbox.Domain;
+using Sandbox.Domain.Models;
 
-namespace Sandbox.Persistence.NHibernate
+namespace Sandbox.Persistence.NHibernate.Startup
 {
     public class NHBootstrapper
     {
@@ -44,14 +40,19 @@ namespace Sandbox.Persistence.NHibernate
 
         private static AutoPersistenceModel GenerateAutomap()
         {
-            AutoPersistenceModel automap = new AutoPersistenceModel();
+            return new AutoPersistenceModel()
+                .Conventions.AddFromAssemblyOf<NHBootstrapper>()
+                .UseOverridesFromAssemblyOf<NHBootstrapper>()
+                .AddEntityAssembly(Assembly.GetAssembly(typeof(Person)))
+                .Where(objectType => objectType.IsSubclassOf(typeof(Entity)))
+                .OverrideAll(IgnoreByAttribute<IgnoreMapAttribute>);
+        }
 
-            automap.Conventions.AddFromAssemblyOf<NHBootstrapper>();
-            automap.UseOverridesFromAssemblyOf<NHBootstrapper>();
-            automap.AddEntityAssembly(Assembly.GetAssembly(typeof(Person)))
-                   .Where(objectType => objectType.IsSubclassOf(typeof(Entity)));
-
-            return automap;
+        private static void IgnoreByAttribute<TAttribute>(IPropertyIgnorer p)
+        {
+            p.IgnoreProperties(x => x.MemberInfo
+                                     .GetCustomAttributes(typeof(TAttribute), true)
+                                     .Any());
         }
 
         // Updates the database schema if there are any changes to the model,

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Sandbox.Domain.Models;
 
-namespace Sandbox.Domain
+namespace Sandbox.Persistence.Common
 {
     public class FakePersonRepository : IPersonRepository
     {

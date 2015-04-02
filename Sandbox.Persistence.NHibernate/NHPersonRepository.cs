@@ -1,5 +1,6 @@
 ﻿using NHibernate;
-using Sandbox.Domain;
+using Sandbox.Domain.Models;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using Sandbox.Web2.Models;
-
-namespace Sandbox.Web2
+﻿namespace Sandbox.Web2
 {
     public static class AuthConfig
     {

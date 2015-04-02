@@ -1,6 +1,6 @@
 ﻿using FluentNHibernate.Data;
 
-namespace Sandbox.Domain
+namespace Sandbox.Domain.Models
 {
     public class ContactInfo : Entity
     {
@@ -9,10 +9,10 @@ namespace Sandbox.Domain
         public virtual string Zip { get; set; }
         public virtual PhoneInfo Phone { get; set; }
 
-        /*[IgnoreMapping]
-        public Country Country
+        [IgnoreMap]
+        public virtual Country Country
         {
             get { return State.Country; }
-        }*/
+        }
     }
 }

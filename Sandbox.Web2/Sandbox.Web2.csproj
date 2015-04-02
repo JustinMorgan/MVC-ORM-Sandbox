@@ -210,6 +210,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ModelMapper.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWorkAttribute.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -338,8 +340,12 @@
       <Project>{737552C5-29DB-4CE9-A3D0-8B73D19BE5AB}</Project>
       <Name>Sandbox.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sandbox.Persistence\Sandbox.Persistence.NHibernate.csproj">
-      <Project>{0F7D00A8-30B6-483B-B988-904BFAA08283}</Project>
+    <ProjectReference Include="..\Sandbox.Persistence.Common\Sandbox.Persistence.Common.csproj">
+      <Project>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</Project>
+      <Name>Sandbox.Persistence.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Persistence.NHibernate\Sandbox.Persistence.NHibernate.csproj">
+      <Project>{0f7d00a8-30b6-483b-b988-904bfaa08283}</Project>
       <Name>Sandbox.Persistence.NHibernate</Name>
     </ProjectReference>
   </ItemGroup>

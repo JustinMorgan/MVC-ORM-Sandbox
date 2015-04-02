@@ -1,10 +1,8 @@
 ﻿using System.Linq;
-using FluentNHibernate.Data;
 
-namespace Sandbox.Domain
+namespace Sandbox.Persistence.Common
 {
     public interface IRepository<TEntity> : IQueryable<TEntity> 
-        where TEntity : Entity
     {
         TEntity Get(long id);
         void Add(TEntity entity);

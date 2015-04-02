@@ -1,4 +1,4 @@
-﻿@using Sandbox.Web2
+﻿@using Sandbox.Web2.Models
 @model IEnumerable<PersonModel>
 @{
     ViewBag.Title = "People";
@@ -21,3 +21,5 @@
         </ul>
     }
 </section>
+
+@Html.ActionLink("New Person", "Add")

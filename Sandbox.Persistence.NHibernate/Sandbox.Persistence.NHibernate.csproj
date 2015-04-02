@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{737552C5-29DB-4CE9-A3D0-8B73D19BE5AB}</ProjectGuid>
+    <ProjectGuid>{0F7D00A8-30B6-483B-B988-904BFAA08283}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sandbox.Domain</RootNamespace>
-    <AssemblyName>Sandbox.Domain</AssemblyName>
+    <RootNamespace>Sandbox.Persistence</RootNamespace>
+    <AssemblyName>Sandbox.Persistence</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,18 +57,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IgnoreMapAttribute.cs" />
-    <Compile Include="Models\ContactInfo.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\PhoneInfo.cs" />
+    <Compile Include="NHUnitOfWork.cs" />
+    <Compile Include="NHPersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\State.cs" />
+    <Compile Include="NHRepository.cs" />
+    <Compile Include="Startup\NHBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sandbox.Domain\Sandbox.Domain.csproj">
+      <Project>{737552c5-29db-4ce9-a3d0-8b73d19be5ab}</Project>
+      <Name>Sandbox.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Persistence.Common\Sandbox.Persistence.Common.csproj">
+      <Project>{13eea988-14a9-4483-a5a7-6a08d3da74a5}</Project>
+      <Name>Sandbox.Persistence.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

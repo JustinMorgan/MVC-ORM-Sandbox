@@ -1,6 +1,6 @@
 using FluentNHibernate.Data;
 
-namespace Sandbox.Domain
+namespace Sandbox.Domain.Models
 {
     public class Country : Entity
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web2.Models
 {
     public class PersonModel
     {
