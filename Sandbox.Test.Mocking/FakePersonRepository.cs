@@ -10,7 +10,7 @@ namespace Sandbox.Test.Mocking
 {
     public class FakePersonRepository : IPersonRepository
     {
-        protected readonly List<Person> _list;
+        private readonly List<Person> _list;
 
         public FakePersonRepository()
         {
@@ -42,9 +42,25 @@ namespace Sandbox.Test.Mocking
             return _list.FirstOrDefault(p => p.Id == id);
         }
 
+        public IQueryable<Person> Query()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Add(Person entity)
         {
             _list.Add(entity);
+        }
+
+        public void Update(Person entity)
+        {
+            _list.RemoveAll(p => p.Id == entity.Id);
+            _list.Add(entity);
+        }
+
+        public void AddOrUpdate(Person entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void Remove(Person entity)

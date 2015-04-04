@@ -35,7 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.1.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +60,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sandbox.Domain\Sandbox.Domain.csproj">
+      <Project>{737552c5-29db-4ce9-a3d0-8b73d19be5ab}</Project>
+      <Name>Sandbox.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Persistence.Common\Sandbox.Persistence.Common.csproj">
+      <Project>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</Project>
+      <Name>Sandbox.Persistence.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Test.Mocking\Sandbox.Test.Mocking.csproj">
+      <Project>{595F0E15-D621-4FD1-BD1C-2BECE7AE6F3D}</Project>
+      <Name>Sandbox.Test.Mocking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Web\Sandbox.Web.csproj">
+      <Project>{1bfae2fd-dd64-4ba4-b2ad-5f70a8812765}</Project>
+      <Name>Sandbox.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

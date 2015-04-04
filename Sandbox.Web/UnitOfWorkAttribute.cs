@@ -1,91 +1,49 @@
 ﻿using System;
-using System.Data;
 using System.Web.Mvc;
-using NHibernate;
+using Sandbox.Persistence.Common;
 
-namespace Sandbox.Web
+namespace Sandbox.Web2
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class UnitOfWorkAttribute : ActionFilterAttribute
     {
+        //todo: add scope parameter
+        private IUnitOfWork _unitOfWork;
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            DependencyResolver.Current
-                              .GetService<ISession>()
-                              .BeginTransaction(IsolationLevel.ReadCommitted);
+            //todo: handle units of work for child actions
+            _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
+            _unitOfWork.BeginTransaction();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var transaction = DependencyResolver.Current
-                                                .GetService<ISession>()
-                                                .Transaction;
-            
-            if (transaction.IsActive)
+            if (filterContext.Exception != null && filterContext.ExceptionHandled)
             {
-                if (filterContext.Exception != null && filterContext.ExceptionHandled)
-                {
-                    transaction.Rollback();
-                }
+                _unitOfWork.Rollback();
             }
         }
 
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            var transaction = DependencyResolver.Current.GetService<ISession>().Transaction;
-
             base.OnResultExecuted(filterContext);
 
             try
             {
-                if (transaction.IsActive)
+                if (filterContext.Exception != null && !filterContext.ExceptionHandled)
                 {
-                    if (filterContext.Exception != null && !filterContext.ExceptionHandled)
-                    {
-                        transaction.Rollback();
-                    }
-                    else
-                    {
-                        transaction.Commit();
-                    }
+                    _unitOfWork.Rollback();
+                }
+                else
+                {
+                    _unitOfWork.Commit();
                 }
             }
             finally
             {
-                transaction.Dispose();
+                _unitOfWork.Dispose();
             }
         }
-
-        /*private static readonly ISessionFactory _sessionFactory;
-
-        static UnitOfWorkAttribute()
-        {
-            _sessionFactory = PersistenceConfig.CreateSessionFactory();
-        }
-
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            NHUnitOfWork.Current = new NHUnitOfWork(_sessionFactory);
-            NHUnitOfWork.Current.BeginTransaction();
-            base.OnActionExecuting(filterContext);
-        }
-
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            base.OnActionExecuted(filterContext);
-            try
-            {
-                NHUnitOfWork.Current.Commit();
-            }
-            catch (Exception)
-            {
-                NHUnitOfWork.Current.Rollback();
-                throw;
-            }
-            finally
-            {
-                NHUnitOfWork.Current = null;
-            }
-        }*/
     }
 }

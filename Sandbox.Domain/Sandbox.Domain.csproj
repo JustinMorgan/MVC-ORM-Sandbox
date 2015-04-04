@@ -57,7 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IgnoreMapAttribute.cs" />
+    <Compile Include="DoNotPersistAttribute.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Models\ContactInfo.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Person.cs" />

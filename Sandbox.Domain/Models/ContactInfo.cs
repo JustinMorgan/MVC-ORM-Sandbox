@@ -9,7 +9,7 @@ namespace Sandbox.Domain.Models
         public virtual string Zip { get; set; }
         public virtual PhoneInfo Phone { get; set; }
 
-        [IgnoreMap]
+        [DoNotPersist]
         public virtual Country Country
         {
             get { return State.Country; }

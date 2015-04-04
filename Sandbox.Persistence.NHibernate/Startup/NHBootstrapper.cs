@@ -45,7 +45,7 @@ namespace Sandbox.Persistence.NHibernate.Startup
                 .UseOverridesFromAssemblyOf<NHBootstrapper>()
                 .AddEntityAssembly(Assembly.GetAssembly(typeof(Person)))
                 .Where(objectType => objectType.IsSubclassOf(typeof(Entity)))
-                .OverrideAll(IgnoreByAttribute<IgnoreMapAttribute>);
+                .OverrideAll(IgnoreByAttribute<DoNotPersistAttribute>);
         }
 
         private static void IgnoreByAttribute<TAttribute>(IPropertyIgnorer p)

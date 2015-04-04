@@ -61,6 +61,10 @@
       <Project>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</Project>
       <Name>Sandbox.Persistence.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Persistence.NHibernate\Sandbox.Persistence.NHibernate.csproj">
+      <Project>{0F7D00A8-30B6-483B-B988-904BFAA08283}</Project>
+      <Name>Sandbox.Persistence.NHibernate</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

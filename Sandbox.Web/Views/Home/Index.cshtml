@@ -1,120 +1,45 @@
 ﻿@{
-    ViewBag.Title = "ASP.NET MVC Boilerplate";
-    ViewBag.Description = "A professional ASP.NET MVC template for building secure, fast, robust and adaptable web applications or sites. It provides the minimum amount of code required on top of the default MVC template provided by Microsoft.";
+    ViewBag.Title = "Home Page";
 }
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                To learn more about ASP.NET MVC visit
+                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                If you have any questions about ASP.NET MVC visit
+                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+            </p>
+        </div>
+    </section>
+}
+<h3>We suggest the following:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>Getting Started</h5>
+        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+        enables a clean separation of concerns and that gives you full control over markup
+        for enjoyable, agile development. ASP.NET MVC includes many features that enable
+        fast, TDD-friendly development for creating sophisticated applications that use
+        the latest web standards.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+    </li>
 
-<header class="jumbotron">
-    <h1>@ViewBag.Title</h1>
-    <p class="lead">@ViewBag.Description</p>
-    <p><a href="https://github.com/RehanSaeed/ASP.NET-MVC-Boilerplate" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</header>
+    <li class="two">
+        <h5>Add NuGet packages and jump-start your coding</h5>
+        NuGet makes it easy to install and update free libraries and tools.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+    </li>
 
-<div class="row">
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-book"></span> Getting started</h2>
-        </header>
-        <p>
-            ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-            a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-            is an ideal platform for building RESTful applications on the .NET Framework.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-dropbox"></span> Get more libraries</h2>
-        </header>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-cloud"></span> Web Hosting</h2>
-        </header>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </article>
-</div>
-
-<div class="row">
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-mobile"></span> Bootstrap</h2>
-        </header>
-        <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</p>
-        <p><a class="btn btn-default" href="http://getbootstrap.com/getting-started/">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-flag"></span> Font Awesome</h2>
-        </header>
-        <p>Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.</p>
-        <p><a class="btn btn-default" href="http://fortawesome.github.io/Font-Awesome/">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-check"></span> Modernizr</h2>
-        </header>
-        <p>Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.</p>
-        <p><a class="btn btn-default" href="http://modernizr.com/">Learn more &raquo;</a></p>
-    </article>
-</div>
-
-<div class="row">
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-lock"></span> NWebsec</h2>
-        </header>
-        <p>NWebsec makes securing your ASP.NET MVC site easy with a handful of simple attributes you can add to your global filters, controllers or actions.</p>
-        <p><a class="btn btn-default" href="https://github.com/NWebsec/NWebsec">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-life-ring"></span> Elmah</h2>
-        </header>
-        <p>ELMAH (Error Logging Modules and Handlers) is an application-wide error logging facility that is completely pluggable.</p>
-        <p><a class="btn btn-default" href="https://code.google.com/p/elmah/wiki/MVC">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-line-chart"></span> Glimpse</h2>
-        </header>
-        <p>Makes debugging and performance testing easier by providing real time diagnostics & insights.</p>
-        <p><a class="btn btn-default" href="http://getglimpse.com/">Learn more &raquo;</a></p>
-    </article>
-</div>
-
-<div class="row">
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-link"></span> Autofac</h2>
-        </header>
-        <p>Autofac is an addictive <a href="http://martinfowler.com/articles/injection.html">inversion of control</a> container. The idea behind inversion of control is that, rather than tie the classes in your application together and let classes “new up” their dependencies, you switch it around so dependencies are instead passed in during class construction.</p>
-        <p><a class="btn btn-default" href="http://autofac.org/">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-wifi"></span> jQuery</h2>
-        </header>
-        <p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</p>
-        <p><a class="btn btn-default" href="http://jquery.com/">Learn more &raquo;</a></p>
-    </article>
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-html5"></span> HTML5</h2>
-        </header>
-        <p>This site makes use of HTML5. HTML5 is a core technology markup language of the Internet used for structuring and presenting content for the World Wide Web.</p>
-        <p><a class="btn btn-default" href="http://en.wikipedia.org/wiki/HTML5">Learn more &raquo;</a></p>
-    </article>
-</div>
-
-<div class="row">
-    <article class="col-md-4">
-        <header>
-            <h2><span class="fa fa-link"></span> ASP.NET MVC Boilerplate</h2>
-        </header>
-        <p>Find out more about how the <a href="http://rehansaeed.co.uk/asp-net-mvc-boilerplate/">ASP.NET MVC Boilerplate</a> project template was put together and what features it includes out of the box.</p>
-        <p><a class="btn btn-default" href="http://autofac.org/">Learn more &raquo;</a></p>
-    </article>
-</div>
+    <li class="three">
+        <h5>Find Web Hosting</h5>
+        You can easily find a web hosting company that offers the right mix of features
+        and price for your applications.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+    </li>
+</ol>
