@@ -1,4 +1,4 @@
-﻿namespace Sandbox.Web2
+﻿namespace Sandbox.Web
 {
     public static class AuthConfig
     {

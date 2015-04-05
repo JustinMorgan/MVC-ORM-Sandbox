@@ -3,9 +3,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
-    public class ApplicationBuilder
+    /*public class ApplicationBuilder
     {
         protected readonly HttpConfiguration HttpConfig;
         protected readonly GlobalFilterCollection Filters;
@@ -32,5 +32,5 @@ namespace Sandbox.Web2
             BundleConfig.RegisterBundles(Bundles);
             AuthConfig.RegisterAuth();
         }
-    }
+    }*/
 }

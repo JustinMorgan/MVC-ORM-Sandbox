@@ -13,6 +13,7 @@ using Sandbox.Domain.Models;
 
 namespace Sandbox.Persistence.NHibernate.Startup
 {
+    //todo: split up  and rename this class
     public class NHBootstrapper
     {
         public static Configuration Configure()
@@ -44,7 +45,8 @@ namespace Sandbox.Persistence.NHibernate.Startup
                 .Conventions.AddFromAssemblyOf<NHBootstrapper>()
                 .UseOverridesFromAssemblyOf<NHBootstrapper>()
                 .AddEntityAssembly(Assembly.GetAssembly(typeof(Person)))
-                .Where(objectType => objectType.IsSubclassOf(typeof(Entity)))
+                .Where(objectType => objectType.Namespace == "Sandbox.Domain.Models")
+                //.Where(objectType => objectType.IsAssignableFrom(typeof(Entity)))
                 .OverrideAll(IgnoreByAttribute<DoNotPersistAttribute>);
         }
 

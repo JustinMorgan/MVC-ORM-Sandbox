@@ -586,20 +586,6 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
-.entity-list {
-    display: table;
-}
-.entity-list ul {
-    display: table-row;
-}
-.entity-list ul:first-child {
-    font-weight: bold;
-}
-.entity-list li {
-    display: table-cell;
-    padding-right: 10px;
-}
-
 /********************
 *   Mobile Styles   *
 ********************/

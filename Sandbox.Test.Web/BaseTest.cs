@@ -7,7 +7,7 @@ using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sandbox.Persistence.Common;
 using Sandbox.Test.Mocking;
-using Sandbox.Web2;
+using Sandbox.Web;
 
 namespace Sandbox.Test.Persistence
 {

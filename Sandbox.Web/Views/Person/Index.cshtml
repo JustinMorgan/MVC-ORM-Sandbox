@@ -1,4 +1,4 @@
-﻿@using Sandbox.Web2.Models
+﻿@using Sandbox.Web.Models
 @model IEnumerable<PersonModel>
 @{
     ViewBag.Title = "People";
@@ -12,16 +12,48 @@
         <li>Name</li>
         <li>Birthdate</li>
         <li>Gender</li>
+        <li></li>
+        <li></li>
     </ul>
     @foreach(var p in Model)
     {
-        <ul>
+        <ul class="model-display" data-id="@p.Id">
             <li>@p.Id</li>
             <li>@p.Name</li>
             <li>@p.BirthDate.ToShortDateString()</li>
             <li>@p.Gender</li>
+            <li>
+                <a class="fa fa-pencil edit" href="@Url.Action("Update", new {p.Id})"></a>
+            </li>
+            <li>
+                <a class="fa fa-times delete intercept" href="@Url.Action("Delete", new {p.Id})"></a>
+            </li>
         </ul>
     }
 </section>
 
+
 @Html.ActionLink("New Person", "Add")
+
+@section scripts {
+<script>
+    $(function() {
+        $('.delete.intercept').on('click', function (e) {
+            var $this = $(this);
+
+            e.preventDefault();
+
+            $.ajax($this.attr('href'), {
+                type: 'DELETE',
+                success: function(data) {
+                    $('.model-display[data-id="' + data.id + '"]').remove();
+                },
+                error: function(e) {
+                    alert('delete failed');
+                    console.error(e);
+                }
+            });
+        });
+    });
+</script>
+}

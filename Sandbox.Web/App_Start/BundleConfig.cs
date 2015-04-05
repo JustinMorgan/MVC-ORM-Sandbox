@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
     public class BundleConfig
     {

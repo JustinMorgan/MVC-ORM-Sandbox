@@ -1,19 +1,19 @@
 ﻿@using Sandbox.Domain.Models
-@using Sandbox.Web2
-@model Sandbox.Web2.Models.PersonModel
+@using Sandbox.Web
+@model Sandbox.Web.Models.PersonModel
 
 @{
-    ViewBag.Title = "Edit Person";
+    ViewBag.Title = "Add Person";
 }
 
-<h2>Add</h2>
+<h2>New Person</h2>
 
-@using (Html.BeginForm("Save", "Person")) {
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Person @Model.Id</legend>
+        <legend>Add</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)

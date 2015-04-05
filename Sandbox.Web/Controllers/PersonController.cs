@@ -3,10 +3,10 @@ using System.Linq;
 using System.Web.Mvc;
 using Sandbox.Domain.Models;
 using Sandbox.Persistence.Common;
-using Sandbox.Web2.Models;
-using Sandbox.Web2.Models.Mapping;
+using Sandbox.Web.Models;
+using Sandbox.Web.Models.Mapping;
 
-namespace Sandbox.Web2.Controllers
+namespace Sandbox.Web.Controllers
 {
     public class PersonController : Controller
     {
@@ -27,6 +27,7 @@ namespace Sandbox.Web2.Controllers
         [HttpGet]
         public ActionResult Add()
         {
+            //test data
             var rand = new Random();
             var age = rand.Next(50);
             var gender = age % 2 == 1
@@ -36,48 +37,77 @@ namespace Sandbox.Web2.Controllers
             var model = new PersonModel()
             {
                 Name = "test " + rand.Next(200),
-                BirthDate = DateTime.Today.AddYears(-age)
+                BirthDate = DateTime.Today.AddYears(-age),
+                Gender = gender
             };
 
-            return View("Edit", model);
+            return View("Add", model);
         }
 
         [HttpGet]
         [UnitOfWork]
         public ActionResult Update(long id)
         {
-            //todo: error handling
             var person = _personRepository.Get(id);
-            var model = person.ToModel();
-            return View("Edit", model);
+            if (person != null)
+            {
+                var model = person.ToModel();
+                return View("Update", model);
+            }
+            //todo: error handling/validation
+            throw new NotImplementedException();
         }
 
         [HttpPost]
         [UnitOfWork]
-        public ActionResult Save(PersonModel model)
+        public ActionResult Add(PersonModel model)
         {
             if (ModelState.IsValid)
             {
                 var person = model.ToEntity();
-                _personRepository.AddOrUpdate(person);
+                if (person.Id == default(long))
+                {
+                    _personRepository.Add(person);
+                    return RedirectToAction("Index");
+                }
             }
-            else
+            //todo: error handling/validation
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        [UnitOfWork]
+        public ActionResult Update(long id, PersonModel model)
+        {
+            if (ModelState.IsValid)
             {
-                //todo: error handling
-                throw new NotImplementedException();
+                //todo: set repo to decide equivalence by ID 
+                var person = _personRepository.Get(id);
+                if (person != null)
+                {
+                    person.Name = model.Name;
+                    person.BirthDate = model.BirthDate;
+                    person.Gender = model.Gender;
+                    _personRepository.Update(person);
+                    return RedirectToAction("Index");
+                }
             }
-                
-            return RedirectToAction("Index");
+            //todo: error handling/validation
+            throw new NotImplementedException();
         }
 
         [HttpDelete]
         [UnitOfWork]
-        public ActionResult Delete(long id)
+        public JsonResult Delete(long id)
         {
-            //todo: error handling
             var person = _personRepository.Get(id);
-            _personRepository.Remove(person);
-            return RedirectToAction("Index");
+            if (person != null)
+            {
+                _personRepository.Remove(person);
+                return Json(new {id});
+            }
+            //todo: error handling/validation
+            throw new NotImplementedException();
         }
     }
 }

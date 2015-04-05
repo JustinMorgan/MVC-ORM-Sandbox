@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Sandbox.Persistence.Common;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class UnitOfWorkAttribute : ActionFilterAttribute
@@ -12,14 +12,15 @@ namespace Sandbox.Web2
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //todo: handle units of work for child actions
+            //todo: handle units of work for child actions, potentially overlapping UoWs
+            //move to base controller class?
             _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
             _unitOfWork.BeginTransaction();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (filterContext.Exception != null && filterContext.ExceptionHandled)
+            if (filterContext.Exception != null && !filterContext.ExceptionHandled)
             {
                 _unitOfWork.Rollback();
             }

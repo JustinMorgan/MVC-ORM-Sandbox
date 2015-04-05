@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
+using Sandbox.Web.Filters;
+using Sandbox.Web.Models;
 using WebMatrix.WebData;
-using Sandbox.Web2.Filters;
-using Sandbox.Web2.Models;
 
-namespace Sandbox.Web2.Controllers
+namespace Sandbox.Web.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]

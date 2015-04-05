@@ -4,7 +4,7 @@ using System.Web.Http.Dependencies;
 using Autofac;
 using Autofac.Integration.Mvc;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
     public class AutofacContainer : IDependencyResolver
     {

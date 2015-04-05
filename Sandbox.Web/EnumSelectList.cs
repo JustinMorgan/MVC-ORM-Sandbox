@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
     public static class HtmlHelperExtensions
     {

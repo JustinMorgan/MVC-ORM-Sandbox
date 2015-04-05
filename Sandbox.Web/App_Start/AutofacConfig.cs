@@ -9,7 +9,7 @@ using Sandbox.Persistence.NHibernate;
 using Sandbox.Persistence.NHibernate.Startup;
 using NHConfiguration = NHibernate.Cfg.Configuration;
 
-namespace Sandbox.Web2
+namespace Sandbox.Web
 {
     public class AutofacConfig
     {
@@ -31,7 +31,7 @@ namespace Sandbox.Web2
             builder.Register(x => x.Resolve<NHConfiguration>().BuildSessionFactory()).SingleInstance();
             builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerDependency();
             builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
-            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>();
+            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().SingleInstance();
         }
 
         protected virtual void RegisterMvc(ContainerBuilder builder, Assembly assembly)

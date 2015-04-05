@@ -1,7 +1,7 @@
 ﻿using System;
 using Sandbox.Domain.Models;
 
-namespace Sandbox.Web2.Models
+namespace Sandbox.Web.Models
 {
     public class PersonModel
     {

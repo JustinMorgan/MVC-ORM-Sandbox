@@ -2,6 +2,7 @@
 
 namespace Sandbox.Domain.Models
 {
+    //todo: model in MVC
     public class ContactInfo : Entity
     {
         public virtual string StreetAddress { get; set; }

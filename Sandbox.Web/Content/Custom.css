@@ -1,0 +1,25 @@
+﻿.entity-list {
+    display: table;
+}
+.entity-list ul {
+    display: table-row;
+}
+.entity-list ul:first-child {
+    font-weight: bold;
+}
+.entity-list li {
+    display: table-cell;
+    padding-right: 10px;
+}
+
+a.fa {
+    text-decoration: none;
+}
+
+a.fa.edit {
+    color: #888;
+}
+
+a.fa.delete {
+    color: red;
+}

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Sandbox.Domain.Models;
 
-namespace Sandbox.Web2.Models.Mapping
+namespace Sandbox.Web.Models.Mapping
 {
     public static class PersonModelMapper
     {
