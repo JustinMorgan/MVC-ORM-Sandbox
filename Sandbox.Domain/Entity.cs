@@ -1,7 +1,7 @@
 ﻿namespace Sandbox.Domain
 {
-    /*public abstract class Entity<TId> where TId : struct
+    public abstract class Entity : IPersistable, IHaveId<long>
     {
-        public TId Id { get; set; }
-    }*/
+        public long Id { get; set; }
+    }
 }

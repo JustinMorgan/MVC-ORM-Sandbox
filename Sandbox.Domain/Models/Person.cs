@@ -1,9 +1,8 @@
 ﻿using System;
-using FluentNHibernate.Data;
 
 namespace Sandbox.Domain.Models
 {
-    public class Person : Entity
+    public class Person : Entity<long>
     {
         public virtual string Name { get; set; }
         public virtual DateTime BirthDate { get; set; }

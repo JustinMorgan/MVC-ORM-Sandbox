@@ -1,6 +1,6 @@
 using System;
 
-namespace Sandbox.Domain
+namespace Sandbox.Domain.Annotations
 {
     public class DoNotPersistAttribute : Attribute
     {

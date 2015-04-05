@@ -7,13 +7,14 @@ using FluentNHibernate.Data;
 using NHibernate;
 using NHibernate.Linq;
 using Sandbox.Domain;
+using Sandbox.Domain.Repositories;
 using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {
     //todo: remove NH entity constraint
     public class NHRepository<TEntity> : IRepository<TEntity>
-        where TEntity : Entity
+        where TEntity : IPersistable
     {
         protected readonly ISession _session;
 

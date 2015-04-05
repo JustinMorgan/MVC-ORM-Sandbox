@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sandbox.Persistence.Common
+namespace Sandbox.Domain.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {

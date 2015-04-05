@@ -1,9 +1,9 @@
-﻿using FluentNHibernate.Data;
+﻿using Sandbox.Domain.Annotations;
 
 namespace Sandbox.Domain.Models
 {
     //todo: model in MVC
-    public class ContactInfo : Entity
+    public class ContactInfo : Entity<long>
     {
         public virtual string StreetAddress { get; set; }
         public virtual State State { get; set; }

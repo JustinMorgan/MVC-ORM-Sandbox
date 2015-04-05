@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using NHibernate;
+using Sandbox.Domain.Repositories;
 using Sandbox.Persistence.Common;
 using Sandbox.Persistence.NHibernate;
 using Sandbox.Persistence.NHibernate.Startup;

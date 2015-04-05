@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Sandbox.Persistence.Common
+namespace Sandbox.Domain.Repositories
 {
     //todo: consider removing IQueryable interface and specifying methods directly
     public interface IRepository<TEntity> : IQueryable<TEntity>

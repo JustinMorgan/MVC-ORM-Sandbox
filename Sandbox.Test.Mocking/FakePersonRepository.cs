@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Sandbox.Domain.Models;
+using Sandbox.Domain.Repositories;
 using Sandbox.Persistence.Common;
 
 namespace Sandbox.Test.Mocking

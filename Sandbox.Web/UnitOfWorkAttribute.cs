@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using Sandbox.Persistence.Common;
+using Sandbox.Domain.Repositories;
 
 namespace Sandbox.Web
 {
