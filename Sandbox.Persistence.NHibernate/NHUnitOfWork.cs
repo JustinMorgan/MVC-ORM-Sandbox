@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using NHibernate;
-using Sandbox.Persistence.Common;
+using Sandbox.Domain.Repositories;
 
 namespace Sandbox.Persistence.NHibernate
 {
@@ -8,10 +8,12 @@ namespace Sandbox.Persistence.NHibernate
     {
         //todo: check that injected sessions get cleaned up and disposed properly
         private readonly ISession _session;
+        private readonly ISessionFactory _sessionFactory;
 
-        public NHUnitOfWork(ISession session)
+        public NHUnitOfWork(ISessionFactory sessionFactory)
         {
-            _session = session;
+            _sessionFactory = sessionFactory;
+            _session = sessionFactory.OpenSession();
         }
 
         public void BeginTransaction()

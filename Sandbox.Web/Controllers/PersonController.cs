@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using Sandbox.Domain.Models;
 using Sandbox.Domain.Repositories;
-using Sandbox.Persistence.Common;
 using Sandbox.Web.Models;
 using Sandbox.Web.Models.Mapping;
 
@@ -89,7 +88,7 @@ namespace Sandbox.Web.Controllers
                     person.Name = model.Name;
                     person.BirthDate = model.BirthDate;
                     person.Gender = model.Gender;
-                    _personRepository.Update(person);
+                    _personRepository.Update(person); //todo: test without this line
                     return RedirectToAction("Index");
                 }
             }
@@ -97,7 +96,7 @@ namespace Sandbox.Web.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpDelete]
+        //[HttpDelete]
         [UnitOfWork]
         public JsonResult Delete(long id)
         {
@@ -105,7 +104,10 @@ namespace Sandbox.Web.Controllers
             if (person != null)
             {
                 _personRepository.Remove(person);
-                return Json(new {id});
+                return Json(
+                    new {id}, 
+                    JsonRequestBehavior.AllowGet //debug only
+                );
             }
             //todo: error handling/validation
             throw new NotImplementedException();

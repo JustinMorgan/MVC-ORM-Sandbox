@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using FluentNHibernate.Data;
 using NHibernate;
 using NHibernate.Linq;
 using Sandbox.Domain;
 using Sandbox.Domain.Repositories;
-using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {
     //todo: remove NH entity constraint
-    public class NHRepository<TEntity> : IRepository<TEntity>
-        where TEntity : IPersistable
+    public class NHRepository<TEntity, TId> : IRepository<TEntity, TId>
+        where TEntity : IPersistable, IHaveId<TId>
+        where TId : struct
     {
         protected readonly ISession _session;
 
@@ -48,7 +47,7 @@ namespace Sandbox.Persistence.NHibernate
             get { return _session.Query<TEntity>().Provider; }
         }
 
-        public TEntity Get(long id)
+        public TEntity Get(TId id)
         {
             return _session.Get<TEntity>(id);
         }

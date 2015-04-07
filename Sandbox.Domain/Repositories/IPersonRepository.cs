@@ -2,7 +2,7 @@
 
 namespace Sandbox.Domain.Repositories
 {
-    public interface IPersonRepository : IRepository<Person>
+    public interface IPersonRepository : IRepository<Person, long>
     {
     }
 }

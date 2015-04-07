@@ -2,7 +2,7 @@
 
 namespace Sandbox.Domain.Models
 {
-    public class Person : Entity<long>
+    public class Person : Entity
     {
         public virtual string Name { get; set; }
         public virtual DateTime BirthDate { get; set; }
