@@ -72,10 +72,6 @@
       <Project>{13EEA988-14A9-4483-A5A7-6A08D3DA74A5}</Project>
       <Name>Sandbox.Persistence.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sandbox.Test.Mocking\Sandbox.Test.Mocking.csproj">
-      <Project>{595F0E15-D621-4FD1-BD1C-2BECE7AE6F3D}</Project>
-      <Name>Sandbox.Test.Mocking</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sandbox.Web\Sandbox.Web.csproj">
       <Project>{1bfae2fd-dd64-4ba4-b2ad-5f70a8812765}</Project>
       <Name>Sandbox.Web</Name>

@@ -1,64 +1,44 @@
 ﻿using System.Data;
 using NHibernate;
-using Sandbox.Domain.Repositories;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {
     public class NHUnitOfWork : IUnitOfWork
     {
-        //todo: check that injected sessions get cleaned up and disposed properly
-        private readonly ISession _session;
         private readonly ISessionFactory _sessionFactory;
+        private readonly ITransaction _transaction;
+        public ISession Session { get; private set; }
 
         public NHUnitOfWork(ISessionFactory sessionFactory)
         {
             _sessionFactory = sessionFactory;
-            _session = sessionFactory.OpenSession();
-        }
-
-        public void BeginTransaction()
-        {
-            BeginTransaction(IsolationLevel.ReadCommitted);
-        }
-
-        public void BeginTransaction(IsolationLevel isolationLevel)
-        {
-            _session.BeginTransaction(isolationLevel);
+            Session = _sessionFactory.OpenSession();
+            Session.FlushMode = FlushMode.Auto;
+            _transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
         public void Commit()
         {
-            var transaction = _session.Transaction;
-
-            try
+            if (_transaction.IsActive)
             {
-                transaction.Commit();
-            }
-            finally
-            {
-                _session.Close();
+                _transaction.Commit();
             }
         }
 
         public void Rollback()
         {
-            var transaction = _session.Transaction;
-
-            try
+            if (_transaction.IsActive)
             {
-                transaction.Rollback();
-            }
-            finally
-            {
-                _session.Close();
+                _transaction.Rollback();
             }
         }
 
         public void Dispose()
         {
-            if (_session.IsOpen)
+            if (Session.IsOpen)
             {
-                Rollback();
+                Session.Close();
             }
         }
     }

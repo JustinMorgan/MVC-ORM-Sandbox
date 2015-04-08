@@ -4,11 +4,11 @@ namespace Sandbox.Persistence.Startup
 {
     public interface IDatabaseConfigurer
     {
-        //IPersistenceConfigurer DefaultConfiguration { get; }
+        IPersistenceConfigurer DefaultConfiguration { get; }
     }
     public class NHDatabaseConfig : IDatabaseConfigurer
     {
-        public static IPersistenceConfigurer DefaultConfiguration
+        public IPersistenceConfigurer DefaultConfiguration
         {
             get
             {

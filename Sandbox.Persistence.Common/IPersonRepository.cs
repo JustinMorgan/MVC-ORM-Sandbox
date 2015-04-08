@@ -1,6 +1,6 @@
 ﻿using Sandbox.Domain.Models;
 
-namespace Sandbox.Domain.Repositories
+namespace Sandbox.Persistence.Common
 {
     public interface IPersonRepository : IRepository<Person, long>
     {

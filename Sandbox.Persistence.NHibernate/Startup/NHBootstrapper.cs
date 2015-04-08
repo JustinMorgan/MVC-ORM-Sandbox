@@ -7,13 +7,24 @@ namespace Sandbox.Persistence.NHibernate.Startup
 {
     public class NHBootstrapper
     {
-        public static Configuration Configure()
+        private readonly IDatabaseConfigurer _databaseConfigurer;
+        private readonly IMappingConfigurer _mappingConfigurer;
+        private readonly ISchemaConfigurer _schemaConfigurer;
+
+        public NHBootstrapper(IDatabaseConfigurer databaseConfigurer, IMappingConfigurer mappingConfigurer, ISchemaConfigurer schemaConfigurer)
+        {
+            _databaseConfigurer = databaseConfigurer;
+            _mappingConfigurer = mappingConfigurer;
+            _schemaConfigurer = schemaConfigurer;
+        }
+
+        public virtual Configuration Configure()
         {
             return Fluently.Configure()
-                           .Database(NHDatabaseConfig.DefaultConfiguration)
+                           .Database(_databaseConfigurer.DefaultConfiguration)
                            .CurrentSessionContext<WebSessionContext>()
-                           .Mappings(NHMappingConfig.AutomapDomainObjects)
-                           .ExposeConfiguration(NHSchemaConfig.DefaultUpdateStrategy)
+                           .Mappings(_mappingConfigurer.AutomapDomainObjects)
+                           .ExposeConfiguration(_schemaConfigurer.DefaultUpdateStrategy)
                            .BuildConfiguration();
         }
     }

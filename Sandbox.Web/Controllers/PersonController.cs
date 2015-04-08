@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Sandbox.Domain.Models;
-using Sandbox.Domain.Repositories;
+using Sandbox.Persistence.Common;
 using Sandbox.Web.Models;
 using Sandbox.Web.Models.Mapping;
 
@@ -20,7 +20,8 @@ namespace Sandbox.Web.Controllers
         [UnitOfWork]
         public ActionResult Index()
         {
-            var models = _personRepository.Select(person => person.ToModel());
+            var models = _personRepository.Query()
+                                          .Select(person => person.ToModel());
             return View(models);
         }
 
@@ -86,7 +87,7 @@ namespace Sandbox.Web.Controllers
                 if (person != null)
                 {
                     person.Name = model.Name;
-                    person.BirthDate = model.BirthDate;
+                    person.ChangeBirthdate(model.BirthDate);
                     person.Gender = model.Gender;
                     _personRepository.Update(person); //todo: test without this line
                     return RedirectToAction("Index");

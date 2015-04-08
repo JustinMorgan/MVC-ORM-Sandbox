@@ -4,9 +4,12 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using NHibernate;
-using Sandbox.Domain.Repositories;
+using Sandbox.Domain.Models;
+using Sandbox.Persistence;
+using Sandbox.Persistence.Common;
 using Sandbox.Persistence.NHibernate;
 using Sandbox.Persistence.NHibernate.Startup;
+using Sandbox.Persistence.Startup;
 using NHConfiguration = NHibernate.Cfg.Configuration;
 
 namespace Sandbox.Web
@@ -27,11 +30,17 @@ namespace Sandbox.Web
 
         protected virtual void RegisterPersistence(ContainerBuilder builder)
         {
-            builder.RegisterInstance(NHBootstrapper.Configure()).SingleInstance();
+            builder.RegisterType<NHDatabaseConfig>().As<IDatabaseConfigurer>().SingleInstance();
+            builder.RegisterType<NHMappingConfig>().As<IMappingConfigurer>().SingleInstance();
+            builder.RegisterType<NHSchemaConfig>().As<ISchemaConfigurer>().SingleInstance();
+            builder.RegisterType<NHBootstrapper>().SingleInstance();
+
+            builder.Register<NHConfiguration>(x => x.Resolve<NHBootstrapper>().Configure()).SingleInstance();
+
             builder.Register(x => x.Resolve<NHConfiguration>().BuildSessionFactory()).SingleInstance();
-            builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerDependency();
-            builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
-            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().SingleInstance();
+            builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerHttpRequest();
+            builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
+            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().InstancePerHttpRequest();
         }
 
         protected virtual void RegisterMvc(ContainerBuilder builder, Assembly assembly)

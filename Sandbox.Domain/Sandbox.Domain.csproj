@@ -68,21 +68,13 @@
     <Compile Include="Models\PhoneInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\State.cs" />
-    <Compile Include="Repositories\IPersonRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sandbox.Persistence.Common\Sandbox.Persistence.Common.csproj">
-      <Project>{13eea988-14a9-4483-a5a7-6a08d3da74a5}</Project>
-      <Name>Sandbox.Persistence.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

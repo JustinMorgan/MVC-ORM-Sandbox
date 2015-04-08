@@ -13,11 +13,11 @@ namespace Sandbox.Persistence.Startup
 {
     public interface IMappingConfigurer
     {
-        //void AutomapDomainObjects(MappingConfiguration mapConfig)
+        void AutomapDomainObjects(MappingConfiguration mapConfig);
     }
     public class NHMappingConfig : IMappingConfigurer
     {
-        public static void AutomapDomainObjects(MappingConfiguration mapConfig)
+        public virtual void AutomapDomainObjects(MappingConfiguration mapConfig)
         {
             var entityAssembly = Assembly.GetAssembly(typeof(Person));
             var conventionAssembly = Assembly.GetExecutingAssembly();
@@ -29,7 +29,7 @@ namespace Sandbox.Persistence.Startup
             mapConfig.AutoMappings.Add(baseAutoMap);
         }
 
-        private static AutoPersistenceModel MapAllFrom(Assembly entityAssembly, Assembly conventionAssembly)
+        protected virtual AutoPersistenceModel MapAllFrom(Assembly entityAssembly, Assembly conventionAssembly)
         {
             return new AutoPersistenceModel()
                 .AddEntityAssembly(entityAssembly)
@@ -38,7 +38,7 @@ namespace Sandbox.Persistence.Startup
                 .Conventions.AddAssembly(conventionAssembly);
         }
 
-        private static void IgnoreByAttribute<TAttribute>(IPropertyIgnorer propertyIgnorer)
+        private void IgnoreByAttribute<TAttribute>(IPropertyIgnorer propertyIgnorer)
             where TAttribute : Attribute
         {
             propertyIgnorer.IgnoreProperties(x => x.MemberInfo.GetCustomAttribute<TAttribute>(true) != null);

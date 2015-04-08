@@ -5,11 +5,11 @@ namespace Sandbox.Persistence.Startup
 {
     public interface ISchemaConfigurer
     {
-        //void DefaultUpdateStrategy(Configuration configuration);
+        void DefaultUpdateStrategy(Configuration configuration);
     }
     public class NHSchemaConfig : ISchemaConfigurer
     {
-        public static void DefaultUpdateStrategy(Configuration configuration)
+        public virtual void DefaultUpdateStrategy(Configuration configuration)
         {
             // Updates the database schema if there are any changes to the model,
             // or drops and creates it if it doesn't exist

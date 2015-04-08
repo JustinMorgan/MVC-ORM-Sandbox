@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using Sandbox.Domain.Repositories;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Web
 {
@@ -13,9 +13,8 @@ namespace Sandbox.Web
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //todo: handle units of work for child actions, potentially overlapping UoWs
-            //move to base controller class?
             _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
-            _unitOfWork.BeginTransaction();
+            base.OnActionExecuting(filterContext);
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -35,6 +34,8 @@ namespace Sandbox.Web
             {
                 _unitOfWork.Dispose();
             }
+
+            base.OnActionExecuted(filterContext);
         }
     }
 }

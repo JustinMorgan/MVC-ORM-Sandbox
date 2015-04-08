@@ -1,10 +1,11 @@
 ﻿using System;
+using NHibernate;
 
-namespace Sandbox.Domain.Repositories
+namespace Sandbox.Persistence.Common
 {
     public interface IUnitOfWork : IDisposable
     {
-        void BeginTransaction();
+        ISession Session { get; }
         void Commit();
         void Rollback();
     }

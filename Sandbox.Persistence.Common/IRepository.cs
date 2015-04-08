@@ -1,12 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 
-namespace Sandbox.Domain.Repositories
+namespace Sandbox.Persistence.Common
 {
-    //todo: consider removing IQueryable interface and specifying methods directly
-    public interface IRepository<TEntity, TId> : IQueryable<TEntity>
+    public interface IRepository<TEntity, TId>
     {
         TEntity Get(TId id);
         IQueryable<TEntity> Query();
+        IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter);
         void Add(TEntity entity);
         void Update(TEntity entity);
         void AddOrUpdate(TEntity entity);

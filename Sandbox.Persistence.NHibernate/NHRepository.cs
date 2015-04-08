@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NHibernate;
 using NHibernate.Linq;
 using Sandbox.Domain;
-using Sandbox.Domain.Repositories;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Persistence.NHibernate
 {
@@ -15,36 +13,11 @@ namespace Sandbox.Persistence.NHibernate
         where TEntity : IPersistable, IHaveId<TId>
         where TId : struct
     {
-        protected readonly ISession _session;
+        private readonly ISession _session;
 
         public NHRepository(ISession session)
         {
             _session = session;
-        }
-
-        public IEnumerator<TEntity> GetEnumerator()
-        {
-            return _session.Query<TEntity>().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public Expression Expression
-        {
-            get { return _session.Query<TEntity>().Expression; }
-        }
-
-        public Type ElementType
-        {
-            get { return _session.Query<TEntity>().ElementType; }
-        }
-
-        public IQueryProvider Provider
-        {
-            get { return _session.Query<TEntity>().Provider; }
         }
 
         public TEntity Get(TId id)
@@ -55,6 +28,11 @@ namespace Sandbox.Persistence.NHibernate
         public IQueryable<TEntity> Query()
         {
             return _session.Query<TEntity>();
+        }
+
+        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter)
+        {
+            return Query().Where(filter);
         }
 
         public void Add(TEntity entity)

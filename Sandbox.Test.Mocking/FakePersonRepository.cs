@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Sandbox.Domain.Models;
-using Sandbox.Domain.Repositories;
+using Sandbox.Persistence.Common;
 
 namespace Sandbox.Test.Mocking
 {
@@ -47,6 +47,11 @@ namespace Sandbox.Test.Mocking
             throw new NotImplementedException();
         }
 
+        public IQueryable<Person> Query(Expression<Func<Person, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Add(Person entity)
         {
             _list.Add(entity);
@@ -66,31 +71,6 @@ namespace Sandbox.Test.Mocking
         public void Remove(Person entity)
         {
             _list.Remove(entity);
-        }
-
-        public IEnumerator<Person> GetEnumerator()
-        {
-            return _list.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public Expression Expression
-        {
-            get { return _list.AsQueryable().Expression; }
-        }
-
-        public Type ElementType
-        {
-            get { return typeof(Person); }
-        }
-
-        public IQueryProvider Provider
-        {
-            get { return _list.AsQueryable().Provider; }
         }
     }
 }
