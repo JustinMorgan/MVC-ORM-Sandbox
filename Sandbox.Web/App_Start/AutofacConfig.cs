@@ -10,6 +10,7 @@ using Sandbox.Persistence.Common;
 using Sandbox.Persistence.NHibernate;
 using Sandbox.Persistence.NHibernate.Startup;
 using Sandbox.Persistence.Startup;
+using Sandbox.Web.Utils;
 using NHConfiguration = NHibernate.Cfg.Configuration;
 
 namespace Sandbox.Web
@@ -40,7 +41,7 @@ namespace Sandbox.Web
             builder.Register(x => x.Resolve<NHConfiguration>().BuildSessionFactory()).SingleInstance();
             builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerHttpRequest();
             builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
-            builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().InstancePerHttpRequest();
+            //builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().InstancePerHttpRequest();
         }
 
         protected virtual void RegisterMvc(ContainerBuilder builder, Assembly assembly)

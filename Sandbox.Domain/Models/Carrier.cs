@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sandbox.Domain.Models
 {
-    public class Carrier : GuidEntity
+    public class Carrier : Entity
     {
         //public virtual Dictionary<string, int> Progress { get; protected set; }
 

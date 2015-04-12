@@ -4,17 +4,8 @@ using Sandbox.Domain.Annotations;
 
 namespace Sandbox.Domain.Models
 {
-    public class Plan : GuidEntity
+    public class Plan : Entity
     {
-        [DoNotPersist]
-        public string OptionName
-        {
-            get
-            {
-                return ContractRateOption.Name + " for Plan " + Code;
-            }
-        }
-
         public virtual string Code { get; set; }
         //public virtual Guid ParentId { get; set; }
 
@@ -39,6 +30,16 @@ namespace Sandbox.Domain.Models
         public virtual ICollection<CustomField> CustomFieldTemplate { get; protected set; }
         public virtual ICollection<EnrollmentType> EnrollmentTypes { get; protected set; }
         public virtual ICollection<Benefit> Benefits { get; protected set; }
-        public virtual ICollection<Plan> LinkedPlans { get; protected set; } 
+        public virtual ICollection<Plan> LinkedPlans { get; protected set; }
+
+        ////move to ViewModel
+        //[DoNotPersist]
+        //public string OptionName
+        //{
+        //    get
+        //    {
+        //        return ContractRateOption.Name + " for Plan " + Code;
+        //    }
+        //}
     }
 }

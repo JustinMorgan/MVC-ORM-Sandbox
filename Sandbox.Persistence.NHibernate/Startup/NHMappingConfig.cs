@@ -19,7 +19,7 @@ namespace Sandbox.Persistence.Startup
     {
         public virtual void AutomapDomainObjects(MappingConfiguration mapConfig)
         {
-            var entityAssembly = Assembly.GetAssembly(typeof(Person));
+            var entityAssembly = Assembly.GetAssembly(typeof(IPersistable));
             var conventionAssembly = Assembly.GetExecutingAssembly();
 
             var baseAutoMap = MapAllFrom(entityAssembly, conventionAssembly)

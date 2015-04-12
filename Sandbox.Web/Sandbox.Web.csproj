@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sandbox.Web2</RootNamespace>
-    <AssemblyName>Sandbox.Web2</AssemblyName>
+    <RootNamespace>Sandbox.Web</RootNamespace>
+    <AssemblyName>Sandbox.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -207,24 +207,26 @@
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
-    <Compile Include="AutofacContainer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PersonController.cs" />
-    <Compile Include="EnumSelectList.cs" />
+    <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Mapping\PersonModelMapper.cs" />
-    <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\BrochureModel.cs" />
+    <Compile Include="Models\CarrierModel.cs" />
+    <Compile Include="Models\ContractRateOptionModel.cs" />
+    <Compile Include="Models\Mapping\PlanModelMapper.cs" />
+    <Compile Include="Models\PlanModel.cs" />
+    <Compile Include="Models\PlanZipCodeModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWorkAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fontawesome\font-awesome.css" />
@@ -348,6 +350,8 @@
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Person\Update.cshtml" />
     <Content Include="Views\Person\Add.cshtml" />
+    <Content Include="Views\Plan\Edit.cshtml" />
+    <Content Include="Views\Plan\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,6 +371,10 @@
     <ProjectReference Include="..\Sandbox.Persistence.NHibernate\Sandbox.Persistence.NHibernate.csproj">
       <Project>{0f7d00a8-30b6-483b-b988-904bfaa08283}</Project>
       <Name>Sandbox.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sandbox.Web.Utils\Sandbox.Web.Utils.csproj">
+      <Project>{b1246a43-4ad5-4a57-8220-c615205bfead}</Project>
+      <Name>Sandbox.Web.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

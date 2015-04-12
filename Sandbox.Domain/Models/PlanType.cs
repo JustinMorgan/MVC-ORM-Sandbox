@@ -1,6 +1,6 @@
 ﻿namespace Sandbox.Domain.Models
 {
-    public class User : Entity
+    public class PlanType : ValueObject<int>
     {
     }
 }

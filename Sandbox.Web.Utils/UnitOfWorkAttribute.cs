@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Sandbox.Persistence.Common;
 
-namespace Sandbox.Web
+namespace Sandbox.Web.Utils
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class UnitOfWorkAttribute : ActionFilterAttribute
