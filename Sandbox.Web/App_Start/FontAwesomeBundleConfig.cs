@@ -1,8 +1,10 @@
 using System.Web.Optimization;
+using Sandbox.Web.App_Start;
+using WebActivatorEx;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Sandbox.Web2.App_Start.FontAwesomeBundleConfig), "RegisterBundles")]
+[assembly: PostApplicationStartMethod(typeof(FontAwesomeBundleConfig), "RegisterBundles")]
 
-namespace Sandbox.Web2.App_Start
+namespace Sandbox.Web.App_Start
 {
 	public class FontAwesomeBundleConfig
 	{

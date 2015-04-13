@@ -4,12 +4,12 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using NHibernate;
-using Sandbox.Domain.Models;
 using Sandbox.Persistence;
 using Sandbox.Persistence.Common;
 using Sandbox.Persistence.NHibernate;
 using Sandbox.Persistence.NHibernate.Startup;
 using Sandbox.Persistence.Startup;
+using Sandbox.Web.Utils;
 using NHConfiguration = NHibernate.Cfg.Configuration;
 
 namespace Sandbox.Web

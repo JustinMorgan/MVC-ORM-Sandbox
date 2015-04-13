@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Utils;
 using Sandbox.Domain;
 using Sandbox.Domain.Annotations;
-using Sandbox.Domain.Models;
 using Sandbox.Persistence.NHibernate.Startup;
 
 namespace Sandbox.Persistence.Startup
@@ -19,7 +17,7 @@ namespace Sandbox.Persistence.Startup
     {
         public virtual void AutomapDomainObjects(MappingConfiguration mapConfig)
         {
-            var entityAssembly = Assembly.GetAssembly(typeof(Person));
+            var entityAssembly = Assembly.GetAssembly(typeof(IPersistable));
             var conventionAssembly = Assembly.GetExecutingAssembly();
 
             var baseAutoMap = MapAllFrom(entityAssembly, conventionAssembly)

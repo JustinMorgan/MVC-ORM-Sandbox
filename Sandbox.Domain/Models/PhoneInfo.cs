@@ -1,6 +1,4 @@
-﻿using FluentNHibernate.Data;
-
-namespace Sandbox.Domain.Models
+﻿namespace Sandbox.Domain.Models
 {
     public class PhoneInfo : Entity
     {
