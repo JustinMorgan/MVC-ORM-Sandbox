@@ -98,7 +98,7 @@ namespace Sandbox.Web.Controllers
             throw new NotImplementedException();
         }
 
-        //[HttpDelete]
+        [HttpDelete]
         [UnitOfWork]
         public JsonResult Delete(long id)
         {
@@ -107,8 +107,8 @@ namespace Sandbox.Web.Controllers
             {
                 _personRepository.Remove(person);
                 return Json(
-                    new {id}, 
-                    JsonRequestBehavior.AllowGet //debug only
+                    new {id} 
+                    //, JsonRequestBehavior.AllowGet //debug only
                 );
             }
             //todo: error handling/validation

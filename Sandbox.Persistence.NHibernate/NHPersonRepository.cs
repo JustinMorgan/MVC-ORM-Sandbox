@@ -7,7 +7,7 @@ namespace Sandbox.Persistence
 {
     public class NHPersonRepository : NHRepository<Person, long>, IPersonRepository
     {
-        public NHPersonRepository(ISession session) : base(session)
+        public NHPersonRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

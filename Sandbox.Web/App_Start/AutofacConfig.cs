@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using NHibernate;
+using NHibernate.Cfg;
 using Sandbox.Persistence;
 using Sandbox.Persistence.Common;
 using Sandbox.Persistence.NHibernate;
@@ -38,7 +39,7 @@ namespace Sandbox.Web
             builder.Register<NHConfiguration>(x => x.Resolve<NHBootstrapper>().Configure()).SingleInstance();
 
             builder.Register(x => x.Resolve<NHConfiguration>().BuildSessionFactory()).SingleInstance();
-            builder.Register(x => x.Resolve<ISessionFactory>().OpenSession()).InstancePerHttpRequest();
+            //builder.Register(x => x.Resolve<ISessionFactory>().GetCurrentSession()).InstancePerHttpRequest();
             builder.RegisterType<NHUnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
             builder.RegisterType<NHPersonRepository>().As<IPersonRepository>().InstancePerHttpRequest();
         }

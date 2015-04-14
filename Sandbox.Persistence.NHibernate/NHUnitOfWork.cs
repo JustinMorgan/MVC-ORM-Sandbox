@@ -9,7 +9,7 @@ namespace Sandbox.Persistence.NHibernate
         private readonly ISessionFactory _sessionFactory;
         private readonly ITransaction _transaction;
         public ISession Session { get; private set; }
-
+        
         public NHUnitOfWork(ISessionFactory sessionFactory)
         {
             _sessionFactory = sessionFactory;

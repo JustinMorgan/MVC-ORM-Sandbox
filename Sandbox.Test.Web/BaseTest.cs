@@ -1,21 +1,23 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using AutofacContrib.NSubstitute;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sandbox.Persistence.Common;
 
-namespace Sandbox.Test.Persistence
+namespace Sandbox.Test
 {
     [TestClass]
     public abstract class BaseTest
     {
-        protected IContainer container;
+        protected AutoSubstitute ArrangeContext { get; private set; }
 
         [TestInitialize]
-        public void Setup()
+        public void BaseTestSetup()
         {
-            var builder = new ContainerBuilder();
-            //builder.RegisterType<IUnitOfWork>()
-            container = builder.Build();
+            ArrangeContext = new AutoSubstitute();
+        }
+
+        [TestCleanup]
+        protected void TearDown()
+        {
+            ArrangeContext.Dispose();
         }
     }
 }

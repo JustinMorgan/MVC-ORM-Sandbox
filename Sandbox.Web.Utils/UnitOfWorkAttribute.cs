@@ -17,8 +17,10 @@ namespace Sandbox.Web.Utils
             base.OnActionExecuting(filterContext);
         }
 
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
+            base.OnResultExecuted(filterContext);
+
             try
             {
                 if (filterContext.Exception != null && !filterContext.ExceptionHandled)
@@ -34,8 +36,6 @@ namespace Sandbox.Web.Utils
             {
                 _unitOfWork.Dispose();
             }
-
-            base.OnActionExecuted(filterContext);
         }
     }
 }

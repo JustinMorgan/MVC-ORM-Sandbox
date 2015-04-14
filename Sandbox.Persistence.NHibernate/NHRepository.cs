@@ -13,21 +13,26 @@ namespace Sandbox.Persistence.NHibernate
         where TEntity : IPersistable, IHaveId<TId>
         where TId : struct
     {
-        private readonly ISession _session;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public NHRepository(ISession session)
+        private ISession Session
         {
-            _session = session;
+            get { return _unitOfWork.Session; }
+        }
+
+        public NHRepository(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
         }
 
         public TEntity Get(TId id)
         {
-            return _session.Get<TEntity>(id);
+            return Session.Get<TEntity>(id);
         }
 
         public IQueryable<TEntity> Query()
         {
-            return _session.Query<TEntity>();
+            return Session.Query<TEntity>();
         }
 
         public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter)
@@ -37,22 +42,22 @@ namespace Sandbox.Persistence.NHibernate
 
         public void Add(TEntity entity)
         {
-            _session.Save(entity);
+            Session.Save(entity);
         }
 
         public void Update(TEntity entity)
         {
-            _session.Save(entity, entity.Id);
+            Session.Save(entity, entity.Id);
         }
 
         public void AddOrUpdate(TEntity entity)
         {
-            _session.SaveOrUpdate(entity);
+            Session.SaveOrUpdate(entity);
         }
 
         public void Remove(TEntity entity)
         {
-            _session.Delete(entity);
+            Session.Delete(entity);
         }
     }
 }
