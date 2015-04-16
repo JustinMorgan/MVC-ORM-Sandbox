@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Test", "Sandbox.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Web", "Sandbox.Web\Sandbox.Web.csproj", "{1BFAE2FD-DD64-4BA4-B2AD-5F70A8812765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Web.Utils", "Sandbox.Web.Utils\Sandbox.Web.Utils.csproj", "{B1246A43-4AD5-4A57-8220-C615205BFEAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Web.Common", "Sandbox.Web.Utils\Sandbox.Web.Common.csproj", "{B1246A43-4AD5-4A57-8220-C615205BFEAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

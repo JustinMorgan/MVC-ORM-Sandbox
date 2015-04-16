@@ -6,14 +6,12 @@ namespace Sandbox.Persistence.NHibernate
 {
     public class NHUnitOfWork : IUnitOfWork
     {
-        private readonly ISessionFactory _sessionFactory;
         private readonly ITransaction _transaction;
         public ISession Session { get; private set; }
         
         public NHUnitOfWork(ISessionFactory sessionFactory)
         {
-            _sessionFactory = sessionFactory;
-            Session = _sessionFactory.OpenSession();
+            Session = sessionFactory.OpenSession();
             Session.FlushMode = FlushMode.Auto;
             _transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
         }
@@ -36,6 +34,11 @@ namespace Sandbox.Persistence.NHibernate
 
         public void Dispose()
         {
+            if (_transaction.IsActive)
+            {
+                _transaction.Commit();
+            }
+
             if (Session.IsOpen)
             {
                 Session.Close();

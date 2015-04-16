@@ -1,45 +1,64 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using Sandbox.Domain.Models;
+using Sandbox.Persistence.Common;
+using Sandbox.Test.TestData;
+using Sandbox.Web.Controllers;
+using Sandbox.Web.Models;
+using Sandbox.Web.Models.Mapping;
 
 namespace Sandbox.Test.Web
 {
     [TestClass]
-    public class PersonControllerTests : BaseTest
+    public class PersonControllerTests : BaseControllerTest<PersonController>
     {
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void Init(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
-        [TestInitialize]
-        public void TestSetup()
+        [TestMethod]
+        public void CanShowPersonList()
         {
+            //arrange
+            var people = Fake.PersonList().AsQueryable();
+            Arrange.Resolve<IPersonRepository>().Query().Returns(people);
+
+            //act
+            var result = Act().Index() as ViewResult;
+
+            //assert
+            Assert.IsNotNull(result);
+            //Assert.AreEqual("Index", result.ViewName);
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void PersonListMapsCorrectly()
         {
             //arrange
+            var people = Fake.PersonList().AsQueryable();
+            Arrange.Resolve<IPersonRepository>().Query().Returns(people);
 
             //act
+            var result = Act().Index() as ViewResult;
+            var models = result.Model as IQueryable<PersonModel>;
 
             //assert
+            Assert.IsNotNull(models);
+            Assert.AreEqual(models.Count(), people.Count());
+        }
+
+        [TestMethod]
+        public void CanAddPerson()
+        {
+            //arrange
+            var model = Fake.Person(id: default(long)).ToModel();
+            var repo = Arrange.Resolve<IPersonRepository>();
+
+            //act
+            var result = Act().Add(model) as RedirectToRouteResult;
+
+            //assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.RouteValues["action"].ToString(), "Index");
+            AssertThat<IPersonRepository>().Received(1).Add(Arg.Any<Person>());
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Sandbox.Persistence.NHibernate
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        private ISession Session
+        protected ISession Session
         {
             get { return _unitOfWork.Session; }
         }

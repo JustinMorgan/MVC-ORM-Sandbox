@@ -365,9 +365,9 @@
       <Project>{0f7d00a8-30b6-483b-b988-904bfaa08283}</Project>
       <Name>Sandbox.Persistence.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sandbox.Web.Utils\Sandbox.Web.Utils.csproj">
+    <ProjectReference Include="..\Sandbox.Web.Utils\Sandbox.Web.Common.csproj">
       <Project>{B1246A43-4AD5-4A57-8220-C615205BFEAD}</Project>
-      <Name>Sandbox.Web.Utils</Name>
+      <Name>Sandbox.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

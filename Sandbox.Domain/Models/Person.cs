@@ -3,7 +3,7 @@ using Sandbox.Domain.Annotations;
 
 namespace Sandbox.Domain.Models
 {
-    public class Person : Entity
+    public class Person : DomainObject
     {
         public virtual string Name { get; set; }
         public virtual DateTime BirthDate { get; protected set; }

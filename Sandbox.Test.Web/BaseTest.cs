@@ -6,18 +6,23 @@ namespace Sandbox.Test
     [TestClass]
     public abstract class BaseTest
     {
-        protected AutoSubstitute ArrangeContext { get; private set; }
+        protected AutoSubstitute Arrange { get; private set; }
+
+        protected T AssertThat<T>()
+        {
+            return Arrange.Resolve<T>();
+        }
 
         [TestInitialize]
         public void BaseTestSetup()
         {
-            ArrangeContext = new AutoSubstitute();
+            Arrange = new AutoSubstitute();
         }
 
         [TestCleanup]
-        protected void TearDown()
+        public void TearDown()
         {
-            ArrangeContext.Dispose();
+            Arrange.Dispose();
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace Sandbox.Domain.Models
 {
     //todo: model in MVC
-    public class ContactInfo : Entity
+    public class ContactInfo : DomainObject
     {
         public virtual string StreetAddress { get; set; }
         public virtual State State { get; set; }

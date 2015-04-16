@@ -1,6 +1,6 @@
 namespace Sandbox.Domain.Models
 {
-    public class State : Entity
+    public class State : ValueObject
     {
         public virtual string Name { get; set; }
         public virtual string Code { get; set; }

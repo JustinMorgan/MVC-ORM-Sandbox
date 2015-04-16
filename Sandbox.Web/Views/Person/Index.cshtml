@@ -47,10 +47,10 @@
                 type: 'DELETE',
                 success: function(data) {
                     console.log(data);
-                    //location.reload(true);
+                    $this.closest('ul').remove();
                 },
                 error: function(e) {
-                    alert('delete failed');
+                    alert('delete failed; see console for error details');
                     console.error(e);
                 }
             });

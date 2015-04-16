@@ -1,7 +1,7 @@
 ﻿namespace Sandbox.Domain
 {
-    public abstract class ValueObject<TId> : IHaveId<TId> where TId : struct
+    public abstract class ValueObject : IHaveId<int>
     {
-        public virtual TId Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }

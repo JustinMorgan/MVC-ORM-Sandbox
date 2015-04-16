@@ -1,6 +1,6 @@
 ﻿namespace Sandbox.Domain.Models
 {
-    public class PhoneInfo : Entity
+    public class PhoneInfo : DomainObject
     {
         public virtual string PhoneNumber { get; set; }
         public virtual PhoneType Type { get; set; }

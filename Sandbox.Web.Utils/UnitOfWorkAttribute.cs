@@ -2,18 +2,17 @@
 using System.Web.Mvc;
 using Sandbox.Persistence.Common;
 
-namespace Sandbox.Web.Utils
+namespace Sandbox.Web.Common
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class UnitOfWorkAttribute : ActionFilterAttribute
     {
-        //todo: add scope parameter
         private IUnitOfWork _unitOfWork;
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //todo: handle units of work for child actions, potentially overlapping UoWs
             _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
+
             base.OnActionExecuting(filterContext);
         }
 
@@ -21,20 +20,9 @@ namespace Sandbox.Web.Utils
         {
             base.OnResultExecuted(filterContext);
 
-            try
+            if (filterContext.Exception != null && !filterContext.ExceptionHandled)
             {
-                if (filterContext.Exception != null && !filterContext.ExceptionHandled)
-                {
-                    _unitOfWork.Rollback();
-                }
-                else
-                {
-                    _unitOfWork.Commit();
-                }
-            }
-            finally
-            {
-                _unitOfWork.Dispose();
+                _unitOfWork.Rollback();
             }
         }
     }
