@@ -32,6 +32,7 @@ namespace Sandbox.Persistence.NHibernate
 
         public IQueryable<TEntity> Query()
         {
+            //todo: learn difference between Query and QueryOver
             return Session.Query<TEntity>();
         }
 

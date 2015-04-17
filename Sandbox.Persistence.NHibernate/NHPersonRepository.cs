@@ -15,8 +15,7 @@ namespace Sandbox.Persistence
 
         public IQueryable<Person> QueryByGender(Person.GenderType gender)
         {
-            //todo: learn difference between Query and QueryOver
-            return Session.Query<Person>().Where(p => p.Gender == gender);
+            return Query(p => p.Gender == gender);
         }
     }
 }

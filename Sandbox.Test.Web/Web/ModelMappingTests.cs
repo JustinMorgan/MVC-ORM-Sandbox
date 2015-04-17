@@ -14,7 +14,7 @@ namespace Sandbox.Test.Web
         public void CanMapFromPersonToPersonModel()
         {
             //arrange
-            var person = Fake.Person();
+            var person = new FakePerson();
 
             //act
             var model = person.ToModel();
@@ -32,7 +32,7 @@ namespace Sandbox.Test.Web
             //arrange
             var model = new PersonModel()
             {
-                Id = 111,
+                Id = Guid.NewGuid(),
                 Name = "test",
                 BirthDate = DateTime.Now,
                 Gender = Person.GenderType.Male,

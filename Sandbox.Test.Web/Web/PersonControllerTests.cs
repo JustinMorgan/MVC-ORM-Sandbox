@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -18,7 +19,7 @@ namespace Sandbox.Test.Web
         public void CanShowPersonList()
         {
             //arrange
-            var people = Fake.PersonList().AsQueryable();
+            var people = FakePerson.PersonList().AsQueryable();
             Arrange.Resolve<IPersonRepository>().Query().Returns(people);
 
             //act
@@ -33,7 +34,7 @@ namespace Sandbox.Test.Web
         public void PersonListMapsCorrectly()
         {
             //arrange
-            var people = Fake.PersonList().AsQueryable();
+            var people = FakePerson.PersonList().AsQueryable();
             Arrange.Resolve<IPersonRepository>().Query().Returns(people);
 
             //act
@@ -49,7 +50,7 @@ namespace Sandbox.Test.Web
         public void CanAddPerson()
         {
             //arrange
-            var model = Fake.Person(id: default(long)).ToModel();
+            var model = new FakePerson(id: default(Guid)).ToModel();
             var repo = Arrange.Resolve<IPersonRepository>();
 
             //act

@@ -48,7 +48,7 @@ namespace Sandbox.Web.Controllers
 
         [HttpGet]
         [UnitOfWork]
-        public ActionResult Update(long id)
+        public ActionResult Update(Guid id)
         {
             var person = _personRepository.Get(id);
             if (person != null)
@@ -67,7 +67,7 @@ namespace Sandbox.Web.Controllers
             if (ModelState.IsValid)
             {
                 var person = model.ToEntity();
-                if (person.Id == default(long))
+                if (person.Id == default(Guid))
                 {
                     _personRepository.Add(person);
                     return RedirectToAction("Index");
@@ -79,7 +79,7 @@ namespace Sandbox.Web.Controllers
 
         [HttpPost]
         [UnitOfWork]
-        public ActionResult Update(long id, PersonModel model)
+        public ActionResult Update(Guid id, PersonModel model)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace Sandbox.Web.Controllers
 
         [HttpDelete]
         [UnitOfWork]
-        public JsonResult Delete(long id)
+        public JsonResult Delete(Guid id)
         {
             var person = _personRepository.Get(id);
             if (person != null)

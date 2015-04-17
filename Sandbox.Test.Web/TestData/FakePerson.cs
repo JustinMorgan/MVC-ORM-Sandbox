@@ -1,33 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using NSubstitute;
 using PersonEntity = Sandbox.Domain.Models.Person;
 
 namespace Sandbox.Test.TestData
 {
-    /// <summary>
-    /// Generates fake data objects for tests
-    /// </summary>
-    public static partial class Fake
+    public class FakePerson : PersonEntity
     {
-        public static PersonEntity Person(long id = 123, string name = "test", PersonEntity.GenderType gender = PersonEntity.GenderType.Female, DateTime? birthDate = null)
+        public FakePerson(Guid? id = null, string name = "fake", GenderType gender = GenderType.Female, DateTime? birthDate = null)
         {
-            var person = Substitute.For<PersonEntity>();
-            person.Id.Returns(id);
-            person.Name.Returns(name);
-            person.BirthDate.Returns(birthDate ?? DateTime.Now);
-            person.Gender.Returns(gender);
-
-            return person;
+            this.Id = id ?? Guid.NewGuid();
+            this.Name = name;
+            this.BirthDate = birthDate ?? DateTime.Now;
+            this.Gender = gender;
         }
 
-        public static List<PersonEntity> PersonList()
+        public static List<FakePerson> PersonList()
         {
-            return new List<PersonEntity>
+            return new List<FakePerson>
             {
-                Person(111, "foo"),
-                Person(222, "bar"),
-                Person(333, "baz")
+                new FakePerson(Guid.NewGuid(), "foo"),
+                new FakePerson(Guid.NewGuid(), "bar"),
+                new FakePerson(Guid.NewGuid(), "baz")
             };
         }
     }
